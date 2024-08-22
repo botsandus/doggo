@@ -9,6 +9,10 @@ VERSION := ${HASH}
 build-cli:
 	go build -o ${CLI_BIN} -ldflags="-X 'main.buildVersion=${VERSION}' -X 'main.buildDate=${BUILD_DATE}'" ./cmd/doggo/
 
+.PHONY: build-rutx11-cli
+build-rutx11-cli:
+	GOARCH=arm GOARM=7 GOOS=linux go build -o ${CLI_BIN}_rutx11 -ldflags="-X 'main.buildVersion=${VERSION}' -X 'main.buildDate=${BUILD_DATE}'" ./cmd/
+
 .PHONY: build-web
 build-web:
 	go build -o ${WEB_BIN} -ldflags="-X 'main.buildVersion=${VERSION}' -X 'main.buildDate=${BUILD_DATE}'" ./web/
